@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_NAME:aton}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:test}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        order_by.default_null_ordering: last
+        format_sql: true
+        default_schema: public
+    open-in-view: false
+    show-sql: false
+    generate-ddl: true
+  application:
+    name: backend
+
+auth-params:
+  refresh:
+    lifespan-days: ${REFRESH_LIFESPAN:7}
+    length: ${REFRESH_LENGTH:128}
+  jwt:
+    lifespan-seconds: ${JWT_LIFESPAN:120}
